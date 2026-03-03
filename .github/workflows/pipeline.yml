@@ -23,10 +23,6 @@ jobs:
         run: |
           pip install pandas scikit-learn joblib
 
-      - name: Train Model
-        run: |
-          python predictive_maintenance_project/model_building/train.py
-
 
   deploy:
     needs: model-training

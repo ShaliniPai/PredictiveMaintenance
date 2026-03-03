@@ -1,4 +1,3 @@
-%%writefile .github/workflows/pipeline.yml
 name: Predictive Maintenance Pipeline
 
 on:
@@ -8,29 +7,7 @@ on:
 
 jobs:
 
-  data-preparation:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install Dependencies
-        run: |
-          pip install -r predictive_maintenance_project/requirements.txt
-
-      - name: Run Data Preparation
-        run: |
-          python predictive_maintenance_project/model_building/prep.py
-
-
   model-training:
-    needs: data-preparation
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +21,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r predictive_maintenance_project/requirements.txt
+          pip install pandas scikit-learn joblib
 
       - name: Train Model
         run: |
@@ -67,4 +44,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python predictive_maintenance_project/hosting/hosting.py
+          python hosting/hosting.py

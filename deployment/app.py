@@ -6,7 +6,7 @@ from huggingface_hub import hf_hub_download
 
 # Load trained model from Hugging Face Model Hub
 model_path = hf_hub_download(
-    repo_id="Shalini94/PredictiveMaintenance",
+    repo_id="Shalini94/predictive-maintenance-model",
     filename="best_model.pkl"
 )
 
